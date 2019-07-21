@@ -38,4 +38,22 @@ router.post('/', (req, res, next) => {
   // }
 });
 
+router.put('/:id', isValidId, (req, res, next) => {
+  if(validPost(req.body)) {
+    queries.update(req.params.id, req.body).then(posts => {
+      res.json(posts[0]);
+    });
+  } else {
+    next(new Error('Invalid post'));
+  }
+});
+
+router.delete('/:id', isValidId, (req, res) => {
+  queries.delete(req.params.id).then(() => {
+    res.json({
+      deleted: true
+    });
+  });
+});
+
 module.exports = router; 
