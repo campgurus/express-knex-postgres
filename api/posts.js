@@ -28,4 +28,14 @@ router.get('/:id', isValidId, (req, res, next) => {
   });
 });
 
+router.post('/', (req, res, next) => {
+  // if(validPost(req.body)) {
+    queries.create(req.body).then(posts => {
+      res.json(posts[0]);
+    });
+  // } else {
+  //   next(new Error('Invalid post'));
+  // }
+});
+
 module.exports = router; 
