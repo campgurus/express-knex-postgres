@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "test": "(dropdb --if-exists writtr_express_api_test && createdb writtr_express_api_test) && NODE_ENV=test mocha"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -15,5 +16,10 @@
     "morgan": "~1.9.1",
     "objection": "^1.6.9",
     "pg": "^7.11.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "supertest": "^4.0.2"
   }
 }
